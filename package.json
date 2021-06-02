@@ -1,7 +1,7 @@
 {
   "name": "FaPlayer",
   "version": "0.0.1",
-  "description": "",
+  "description": "Light, simple HTML5 movie player",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
@@ -12,7 +12,7 @@
     "Player"
   ],
   "author": "faciensamet",
-  "license": "GPLv2",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^12.0.9"
   },
