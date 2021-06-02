@@ -10,7 +10,20 @@ document.addEventListener('drop', (event) => {
         console.log('File Path of dragged files: ', f.path)
         //ipcRenderer.send('load-movie', f.path);
         const element = document.getElementById("movie-view")
-        if (element) element.innerHTML = "<video style='height:100vh; width:100vw; object-fit:contain' src='" + f.path + "' autoplay ></video>"
+        if (element) 
+        {
+            document.title = "FaPlayer - " + f.path.replace(/^.*[\\\/]/, '');
+            element.innerHTML = "<video style='height:100vh; width:100vw; object-fit:contain' src='" + f.path + "' autoplay ></video>"
+            
+            // Error handling
+            document.getElementsByTagName('video')[0].addEventListener('error', 
+                function(event)
+                {
+                    console.log(event); 
+                }, 
+                true
+            );
+        }
         break;
     }
 });
@@ -27,10 +40,3 @@ document.addEventListener('dragenter', (event) => {
 document.addEventListener('dragleave', (event) => {
     console.log('File has left the Drop Space');
 });
-
-//ipcRenderer.on("load-movie", (event, arg) => {
-  //  console.log("load-movie  " + arg);
-
-    //const element = document.getElementById("movie-view")
-    //if (element) element.innerText = "<video src='" + arg + "' autoplay></video>";
-//})
