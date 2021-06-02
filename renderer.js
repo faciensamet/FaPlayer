@@ -3,7 +3,6 @@ const { ipcRenderer } = require('electron')
 
 language = require("./lang.ko.json")
 
-
 document.addEventListener('drop', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -17,8 +16,8 @@ document.addEventListener('drop', (event) => {
         if (element) 
         {
             document.title = "FaPlayer - " + f.path.replace(/^.*[\\\/]/, '');
-            element.innerHTML = "<video style='height:100vh; width:100vw; object-fit:contain' src='" + f.path + "' autoplay ></video>"
-            
+            element.innerHTML = "<video id='video' style='height:100vh; width:100vw; object-fit:contain' src='" + f.path + "' autoplay ></video>"
+                      
             // Error handling
             document.getElementsByTagName('video')[0].addEventListener('error', 
                 function(event)
@@ -27,6 +26,28 @@ document.addEventListener('drop', (event) => {
                     if (element) 
                     {
                         element.innerHTML = language.Error_Not_Support_Video;
+                    }
+                }, 
+                true
+            );
+
+            // vidoe loaded event 
+            // - resize window to fit video size
+            document.getElementsByTagName('video')[0].addEventListener('loadeddata', 
+                function(event)
+                {
+                    var videoElement = document.getElementById("video");
+                    if(videoElement)
+                    {
+                        var width = videoElement.videoWidth;
+                        var height = videoElement.videoHeight;
+
+                        if(width > window.screen.width)
+                            width = window.screen.width;
+                        if(height > window.screen.height)
+                            height = window.screen.height;
+
+                        window.resizeTo(width, height)
                     }
                 }, 
                 true

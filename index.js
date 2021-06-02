@@ -32,7 +32,3 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
-//ipcMain.on('load-movie', (event, arg) => {
-  //event.reply("load-movie", arg);
-//})
