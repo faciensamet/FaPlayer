@@ -1,5 +1,9 @@
 const { ipcRenderer } = require('electron')
 
+
+language = require("./lang.ko.json")
+
+
 document.addEventListener('drop', (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -19,7 +23,11 @@ document.addEventListener('drop', (event) => {
             document.getElementsByTagName('video')[0].addEventListener('error', 
                 function(event)
                 {
-                    console.log(event); 
+                    const element = document.getElementById("movie-view")
+                    if (element) 
+                    {
+                        element.innerHTML = language.Error_Not_Support_Video;
+                    }
                 }, 
                 true
             );
