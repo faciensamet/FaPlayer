@@ -61,3 +61,20 @@ document.addEventListener('dragover', (e) => {
     e.preventDefault();
     e.stopPropagation();
 });
+
+
+// 단축키 설정
+document.onkeyup = function(e) 
+{
+    console.log("onkeyup - " + e.key);
+    if(e.key == "Enter")
+    {
+        if(document.fullscreenElement)
+            document.exitFullscreen();
+        else
+            document.body.requestFullscreen();
+        /*var videoElement = document.getElementById("video");
+        if(videoElement)                    
+            videoElement.requestFullscreen();*/
+    }
+}
