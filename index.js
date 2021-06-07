@@ -2,6 +2,17 @@ const { app, BrowserWindow, ipcMain, Menu, MenuItem, remote } = require('electro
 const path = require('path')
 const contextMenu = require('electron-context-menu');
 
+
+
+const isDev = require('electron-is-dev');
+
+if (isDev) {
+	console.log('Running in development');
+} else {
+	console.log('Running in production');
+}
+
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,

@@ -1,6 +1,5 @@
 const { ipcRenderer } = require('electron')
 
-
 language = require("./lang.ko.json")
 
 document.addEventListener('drop', (event) => {
