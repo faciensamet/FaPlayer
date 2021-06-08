@@ -62,18 +62,122 @@ document.addEventListener('dragover', (e) => {
 });
 
 
+document.onkeypress = function (e) 
+{
+    console.log("onkeypress - " + e.key);
+
+    switch (e.key) 
+    {
+        case "ArrowRight":
+            break;
+        case "ArrowLeft":
+            break;
+        case "ArrowUp":
+            var videoElement = document.getElementById("video");
+            if (videoElement)
+             {
+                try 
+                {
+                    videoElement.volume += 0.05;
+                }
+                catch
+                {
+                    videoElement.volume = 1;
+                }
+
+                console.log("Volume = " + videoElement.volume);
+            }
+            break;
+        case "ArrowDown":
+            var videoElement = document.getElementById("video");
+            if (videoElement) {
+                try
+                {
+                    videoElement.volume -= 0.05;
+                }
+                catch
+                {
+                    videoElement.volume = 0;
+                }
+
+                console.log("Volume = " + videoElement.volume);
+            }
+            break;
+    }
+}
+
 // 단축키 설정
 document.onkeyup = function(e) 
 {
     console.log("onkeyup - " + e.key);
-    if(e.key == "Enter")
+    
+    switch(e.key)
     {
-        if(document.fullscreenElement)
-            document.exitFullscreen();
-        else
-            document.body.requestFullscreen();
-        /*var videoElement = document.getElementById("video");
-        if(videoElement)                    
-            videoElement.requestFullscreen();*/
+        case "Enter":
+            if(document.fullscreenElement)
+                document.exitFullscreen();
+            else
+                document.body.requestFullscreen();        
+            break;
+
+
+        case "ArrowRight":
+            var videoElement = document.getElementById("video");
+            if (videoElement)
+            {
+                videoElement.currentTime = videoElement.currentTime+5;
+            }
+            break;
+
+        case "ArrowLeft":
+            var videoElement = document.getElementById("video");
+            if (videoElement)
+            {
+                videoElement.currentTime = videoElement.currentTime-5;
+            }
+            break;
+
+        case "ArrowUp":
+            var videoElement = document.getElementById("video");
+            if (videoElement)
+             {
+                try 
+                {
+                    videoElement.volume += 0.05;
+                }
+                catch
+                {
+                    videoElement.volume = 1;
+                }
+
+                console.log("Volume = " + videoElement.volume);
+            }
+            break;
+        case "ArrowDown":
+            var videoElement = document.getElementById("video");
+            if (videoElement) {
+                try
+                {
+                    videoElement.volume -= 0.05;
+                }
+                catch
+                {
+                    videoElement.volume = 0;
+                }
+
+                console.log("Volume = " + videoElement.volume);
+            }
+            break;
+        
+        case " ":
+            var videoElement = document.getElementById("video");
+            if(videoElement)
+            {
+                if(videoElement.paused)
+                    videoElement.play();
+                else
+                    videoElement.pause();
+            }
+            break;
     }
 }
