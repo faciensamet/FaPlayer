@@ -25,7 +25,7 @@ function createWindow() {
     //frame: false
   })
   
-  if(!isDev)
+  //if(!isDev)
     win.setMenu(null)
 
   win.loadFile('index.html')
