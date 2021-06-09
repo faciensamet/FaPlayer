@@ -21,11 +21,7 @@ document.addEventListener('drop', (event) => {
             document.getElementsByTagName('video')[0].addEventListener('error', 
                 function(event)
                 {
-                    const element = document.getElementById("movie-view")
-                    if (element) 
-                    {
-                        element.innerHTML = language.Error_Not_Support_Video;
-                    }
+                    window.alert(language.Error_Not_Support_Video);
                 }, 
                 true
             );
@@ -106,6 +102,61 @@ document.onkeypress = function (e)
     }
 }
 
+function VideoSeek(delta)
+{
+    var videoElement = document.getElementById("video");
+    if (videoElement)
+    {
+        videoElement.currentTime = videoElement.currentTime+delta;
+    }
+
+    console.log("currentTime = " + videoElement.currentTime);
+}
+
+function VideoVolume(delta)
+{
+    var videoElement = document.getElementById("video");
+    if (videoElement)
+     {
+        try 
+        {
+            videoElement.volume += delta;
+        }
+        catch
+        {
+            if(delta>0)
+                videoElement.volume = 1;
+            else
+                videoElement.volume = 0;
+        }
+
+        console.log("volume = " + videoElement.volume);
+    }
+}
+
+document.onkeydown = function(e)
+{
+    console.log("onkeydown - " + e.key);
+
+    switch(e.key)
+    {
+        case "ArrowRight":
+            VideoSeek(5);
+            break;
+
+        case "ArrowLeft":
+            VideoSeek(-5);
+            break;
+
+        case "ArrowUp":
+            VideoVolume(0.05);
+            break;
+        case "ArrowDown":
+            VideoVolume(-0.05);
+            break;
+    }
+}
+
 // 단축키 설정
 document.onkeyup = function(e) 
 {
@@ -120,55 +171,6 @@ document.onkeyup = function(e)
                 document.body.requestFullscreen();        
             break;
 
-
-        case "ArrowRight":
-            var videoElement = document.getElementById("video");
-            if (videoElement)
-            {
-                videoElement.currentTime = videoElement.currentTime+5;
-            }
-            break;
-
-        case "ArrowLeft":
-            var videoElement = document.getElementById("video");
-            if (videoElement)
-            {
-                videoElement.currentTime = videoElement.currentTime-5;
-            }
-            break;
-
-        case "ArrowUp":
-            var videoElement = document.getElementById("video");
-            if (videoElement)
-             {
-                try 
-                {
-                    videoElement.volume += 0.05;
-                }
-                catch
-                {
-                    videoElement.volume = 1;
-                }
-
-                console.log("Volume = " + videoElement.volume);
-            }
-            break;
-        case "ArrowDown":
-            var videoElement = document.getElementById("video");
-            if (videoElement) {
-                try
-                {
-                    videoElement.volume -= 0.05;
-                }
-                catch
-                {
-                    videoElement.volume = 0;
-                }
-
-                console.log("Volume = " + videoElement.volume);
-            }
-            break;
-        
         case " ":
             var videoElement = document.getElementById("video");
             if(videoElement)
