@@ -1,7 +1,7 @@
 {
   "name": "FaPlayer",
   "version": "0.0.1",
-  "description": "Light, simple HTML5 movie player",
+  "description": "HTML5 movie player",
   "main": "index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -26,7 +26,8 @@
   "dependencies": {
     "electron-context-menu": "^3.1.0",
     "electron-is-dev": "^2.0.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "update-electron-app": "^2.0.1"
   },
   "config": {
     "forge": {

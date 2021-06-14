@@ -1,9 +1,14 @@
+//for update
+require('update-electron-app')({
+  repo: 'faciensamet/FaPlayer',
+  updateInterval: '1 hour',
+  notifyUser: false
+})
+
+
 const { app, BrowserWindow, ipcMain, Menu, MenuItem, remote } = require('electron')
 const path = require('path')
 const contextMenu = require('electron-context-menu');
-
-
-
 const isDev = require('electron-is-dev');
 
 if (isDev) {
