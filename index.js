@@ -12,6 +12,7 @@ if (isDev) {
 	console.log('Running in production');
 }
 
+console.log('argv : ' + process.argv);
 
 function createWindow() {
   const win = new BrowserWindow({
