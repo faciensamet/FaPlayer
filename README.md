@@ -1,2 +1,2 @@
 # FaPlayer
-Light, simple HTML5 movie player
+HTML5 movie player
