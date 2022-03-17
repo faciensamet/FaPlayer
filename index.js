@@ -12,15 +12,29 @@ if (isDev) {
     notifyUser: false
   })
 
+    
+  const {ProgId, ShellOption, Regedit} = require('electron-regedit')
+  
+  new ProgId({
+      description: 'FaPlayer MP4',
+      icon: '',
+      extensions: ['mp4'],
+      shell: [
+          new ShellOption({verb: ShellOption.OPEN}),
+      ]
+  })
+  
+  Regedit.installAll();
+
 }
 
 
-const { app, BrowserWindow, ipcMain, Menu, MenuItem, remote } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu, MenuItem, remote, Debugger } = require('electron')
 const path = require('path')
 const contextMenu = require('electron-context-menu');
 
 
-console.log('argv : ' + process.argv);
+//console.log('argv : ' + process.argv.length + " , " + process.argv[0]+ " , " + process.argv[1]+ " , " + process.argv[2] );
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -34,10 +48,20 @@ function createWindow() {
     //frame: false
   })
   
-  //if(!isDev)
+  if(!isDev)
     win.setMenu(null)
 
-  win.loadFile('index.html')
+  //win.webContents.openDevTools();
+  
+  win.once('ready-to-show', () => {
+    if(process.argv.length>=2)
+    {    
+      console.log("load-movie");
+      win.webContents.send("load-movie", process.argv[1]);
+    }
+  })
+
+  win.loadFile('index.html');
 }
 
 app.whenReady().then(() => {
